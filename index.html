@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portafolio — Taller de Interfaces · UAI 2026</title>
+<meta name="description" content="Portafolio del Taller de Interfaces (UAI, 2026): cuatro entregas sobre interfaces físicas, visuales y sonoras." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23a8e6ff'/%3E%3Cstop offset='1' stop-color='%232fa5e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M4 20 Q8 6 12 20 T20 20 T28 14' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3Cellipse cx='11' cy='9' rx='7' ry='3' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff; --celeste:#3bb4ef; --celeste-lite:#8fd8f7; --celeste-deep:#1683c6;
+    --ink:#0e3a56; --soft:#4d7d9d; --glass-line:rgba(255,255,255,.85);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; color:var(--ink); font-family:"Nunito",system-ui,sans-serif;
+    font-weight:600; line-height:1.55; -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(1200px 500px at 80% -8%, #ffffff 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, #a6e6ff 0%, #d6f4ff 34%, #eef9ff 66%, #ffffff 100%);
+    background-attachment:fixed; min-height:100vh;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px; position:relative; z-index:2}
+
+  /* burbujas flotantes */
+  .bubbles{position:fixed; inset:0; overflow:hidden; z-index:1; pointer-events:none}
+  .bubble{position:absolute; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.95), rgba(180,230,255,.5) 45%, rgba(120,200,240,.15) 100%);
+    box-shadow:inset 0 0 12px rgba(255,255,255,.7), 0 4px 14px rgba(90,180,230,.25);
+    animation:float 14s ease-in-out infinite}
+  .bubble.b1{width:120px;height:120px;left:6%;top:22%;animation-duration:17s}
+  .bubble.b2{width:64px;height:64px;left:86%;top:40%;animation-duration:13s}
+  .bubble.b3{width:200px;height:200px;left:70%;top:68%;animation-duration:21s;opacity:.7}
+  .bubble.b4{width:46px;height:46px;left:16%;top:74%;animation-duration:11s}
+  .bubble.b5{width:90px;height:90px;left:44%;top:8%;animation-duration:19s;opacity:.7}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-26px)}}
+  @media (prefers-reduced-motion:reduce){.bubble{animation:none}}
+
+  /* nav */
+  header.nav{position:sticky; top:0; z-index:20;
+    background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(233,247,255,.62));
+    backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.7);
+    box-shadow:0 4px 20px -12px rgba(30,120,180,.5)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:60px}
+  .brand{font-family:"Fredoka",sans-serif; font-weight:700; font-size:1.02rem; color:var(--celeste-deep)}
+  .brand .spark{color:var(--celeste)}
+  .nav-in .yr{font-family:"Fredoka",sans-serif; font-size:.82rem; color:var(--soft)}
+
+  /* hero */
+  .hero{text-align:center; padding:70px 0 30px}
+  .kicker{font-family:"Fredoka",sans-serif; font-weight:600; letter-spacing:.02em;
+    color:var(--celeste-deep); font-size:.95rem; margin:0 0 14px}
+  .kicker .s{color:var(--celeste)}
+  h1{
+    font-family:"Fredoka",sans-serif; font-weight:700; margin:0;
+    font-size:clamp(3rem,9vw,6rem); line-height:.98; letter-spacing:-.01em;
+    background:linear-gradient(180deg,#7fd2f6 0%, #2ea3e6 52%, #0f6fb0 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 2px 0 rgba(255,255,255,.9)) drop-shadow(0 10px 22px rgba(43,163,230,.45));
+  }
+  .hero .tag{max-width:52ch; margin:20px auto 0; font-size:1.14rem; color:#215a7d; font-weight:600}
+  .wavewrap{margin:26px auto 0; max-width:560px}
+  .wavewrap svg{display:block; width:100%; height:56px; overflow:visible;
+    filter:drop-shadow(0 3px 8px rgba(43,163,230,.5))}
+  .wavewrap path{fill:none; stroke:var(--celeste); stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
+
+  /* works */
+  .section-title{text-align:center; margin:44px 0 26px}
+  .section-title h2{font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.5rem; margin:0; color:var(--ink)}
+  .section-title p{margin:6px 0 0; color:var(--soft); font-size:.95rem}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-bottom:20px}
+  @media (max-width:760px){ .grid{grid-template-columns:1fr} }
+
+  .card{position:relative; display:block; text-decoration:none; color:inherit; overflow:hidden;
+    border-radius:24px; padding:26px 24px 22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(240,250,255,.86));
+    border:1px solid var(--glass-line);
+    box-shadow:0 20px 44px -22px rgba(20,110,170,.55), inset 0 1px 0 rgba(255,255,255,.95);
+    backdrop-filter:blur(6px); transition:transform .2s ease, box-shadow .2s ease}
+  .card::before{content:""; position:absolute; left:0; right:0; top:0; height:48%; pointer-events:none;
+    border-radius:24px 24px 60px 60px;
+    background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,0))}
+  .card:hover{transform:translateY(-4px); box-shadow:0 30px 56px -22px rgba(20,120,180,.6), 0 0 0 2px rgba(90,196,242,.55) inset}
+  .card:focus-visible{outline:3px solid var(--celeste); outline-offset:3px}
+
+  .cardhead{display:flex; align-items:center; gap:14px; position:relative; z-index:1}
+  .badge{flex:none; width:46px; height:46px; border-radius:50%; display:grid; place-items:center;
+    font-family:"Fredoka",sans-serif; font-weight:700; font-size:1.15rem; color:#fff;
+    background:linear-gradient(180deg,#9adcf9 0%, #35abe8 55%, #1487cb 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95), inset 0 -4px 8px rgba(9,90,140,.35), 0 5px 12px rgba(30,130,190,.45);
+    position:relative}
+  .badge::after{content:""; position:absolute; left:22%; right:22%; top:5px; height:34%; border-radius:50%;
+    background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0))}
+  .card h3{font-family:"Fredoka",sans-serif; font-weight:600; font-size:1.28rem; margin:0; line-height:1.15; color:var(--ink)}
+  .role{margin:2px 0 0; font-size:.8rem; color:var(--celeste-deep); font-weight:700; letter-spacing:.01em}
+
+  .card p.desc{position:relative; z-index:1; margin:14px 0 0; color:#2c6285; font-size:.98rem; font-weight:600}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; position:relative; z-index:1}
+  .tags span{font-family:"Fredoka",sans-serif; font-weight:500; font-size:.72rem; color:var(--celeste-deep);
+    padding:5px 12px; border-radius:999px; background:linear-gradient(180deg,#eaf8ff,#d3eefb);
+    border:1px solid rgba(255,255,255,.9); box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
+
+  .actions{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:20px; position:relative; z-index:1}
+  .aqua{position:relative; display:inline-flex; align-items:center; gap:7px; text-decoration:none;
+    font-family:"Fredoka",sans-serif; font-weight:600; font-size:.9rem; color:#fff;
+    padding:11px 20px; border-radius:999px;
+    background:linear-gradient(180deg,#8fd6f7 0%, #34abe8 52%, #1a8ed2 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 8px 18px -6px rgba(26,142,210,.7);
+    transition:transform .15s ease, filter .15s ease}
+  .aqua::before{content:""; position:absolute; left:8%; right:8%; top:3px; height:40%; border-radius:999px;
+    background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0)); pointer-events:none}
+  .aqua:hover{transform:translateY(-1px); filter:brightness(1.05)}
+  .mini{display:flex; gap:14px; flex-wrap:wrap}
+  .mini a{font-family:"Fredoka",sans-serif; font-weight:500; font-size:.82rem; text-decoration:none;
+    color:var(--celeste-deep); border-bottom:2px solid transparent; padding-bottom:1px; transition:border-color .15s}
+  .mini a:hover{border-bottom-color:var(--celeste)}
+
+  footer{margin-top:26px; padding:26px 0 60px; text-align:center;
+    font-family:"Fredoka",sans-serif; color:var(--soft); font-size:.85rem}
+  footer a{color:var(--celeste-deep); text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  footer .sep{margin:0 8px; color:var(--celeste-lite)}
+</style>
+</head>
+<body>
+
+<div class="bubbles" aria-hidden="true">
+  <span class="bubble b1"></span><span class="bubble b2"></span>
+  <span class="bubble b3"></span><span class="bubble b4"></span><span class="bubble b5"></span>
+</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <div class="brand"><span class="spark">✦</span> Antonia Aracena</div>
+    <span class="yr">Taller de Interfaces · UAI 2026</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker"><span class="s">✧</span> portafolio · prof. jorge forero <span class="s">✧</span></p>
+    <h1>Portafolio</h1>
+    <div class="wavewrap" aria-hidden="true">
+      <svg viewBox="0 0 560 56" preserveAspectRatio="none">
+        <path id="wave" d="M0 28 L58 28 L76 8 L94 48 L116 14 L138 42 L158 28 L230 28 L248 16 L266 40 L284 22 L302 34 L320 28 L398 28 L416 10 L434 46 L452 24 L470 32 L488 28 L560 28" />
+      </svg>
+    </div>
+    <p class="tag">Interfaces que se ven, se tocan y se escuchan. Cuatro entregas sobre cómo las personas y las máquinas se comunican, del botón físico al dato que suena.</p>
+  </div>
+</div>
+
+<!-- WORKS -->
+<div class="section-title">
+  <div class="wrap">
+    <h2>✦ Entregas ✦</h2>
+    <p>04 trabajos · 2026</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="grid">
+
+    <!-- ENTREGA 1 -->
+    <a class="card" href="https://antoaracena.github.io/Lamina/" target="_blank" rel="noopener">
+      <div class="cardhead">
+        <span class="badge">01</span>
+        <div>
+          <h3>Lámina de un electrodoméstico</h3>
+          <p class="role">análisis de interfaces</p>
+        </div>
+      </div>
+      <p class="desc">Clasificación de las interfaces de entrada y salida de un electrodoméstico, distinguiendo lo físico, lo visual y lo acústico en una lámina gráfica.</p>
+      <div class="tags"><span>Física</span><span>Visual</span><span>Acústica</span></div>
+      <div class="actions">
+        <span class="aqua">Abrir ✦</span>
+        <div class="mini">
+          <a href="https://antoaracena.github.io/Lamina/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver lámina</a>
+          <a href="https://github.com/antoaracena/Lamina" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- ENTREGA 2 -->
+    <a class="card" href="https://antoaracena.github.io/juego-interactivo-/" target="_blank" rel="noopener">
+      <div class="cardhead">
+        <span class="badge">02</span>
+        <div>
+          <h3>Escucha &amp; Relaciona</h3>
+          <p class="role">experiencia sonora · web</p>
+        </div>
+      </div>
+      <p class="desc">Juego donde el sonido es la interfaz: escuchas un sonido cotidiano y eliges la imagen correcta. Ejercita la percepción auditiva con puntaje y rondas.</p>
+      <div class="tags"><span>Web Audio</span><span>DAW</span><span>Interacción</span></div>
+      <div class="actions">
+        <span class="aqua">Jugar ✦</span>
+        <div class="mini">
+          <a href="https://antoaracena.github.io/juego-interactivo-/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Abrir juego</a>
+          <a href="https://github.com/antoaracena/juego-interactivo-" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- ENTREGA 3 -->
+    <a class="card" href="https://antoaracena.github.io/interfaz-interactiva-en-max/" target="_blank" rel="noopener">
+      <div class="cardhead">
+        <span class="badge">03</span>
+        <div>
+          <h3>Instrumento en Max/MSP</h3>
+          <p class="role">síntesis · tiempo real</p>
+        </div>
+      </div>
+      <p class="desc">Parche que reproduce una canción y la transforma en vivo —velocidad, filtro, volumen— desde una interfaz en Modo Presentación, con la forma de onda a la vista.</p>
+      <div class="tags"><span>Max/MSP</span><span>Tiempo real</span><span>UI</span></div>
+      <div class="actions">
+        <span class="aqua">Abrir ✦</span>
+        <div class="mini">
+          <a href="https://antoaracena.github.io/interfaz-interactiva-en-max/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver página</a>
+          <a href="https://github.com/antoaracena/interfaz-interactiva-en-max" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub</a>
+          <a href="https://www.youtube.com/watch?v=7i6SkQP-bR0" target="_blank" rel="noopener" onclick="event.stopPropagation()">Video</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- ENTREGA 4 -->
+    <a class="card" href="https://antoaracena.github.io/clase-imagen-y-sonido-/" target="_blank" rel="noopener">
+      <div class="cardhead">
+        <span class="badge">04</span>
+        <div>
+          <h3>Imagen → Música</h3>
+          <p class="role">sonificación de imagen</p>
+        </div>
+      </div>
+      <p class="desc">App web que traduce una imagen en música: cada característica visual (color, brillo, saturación, posición) se mapea a un parámetro sonoro en tiempo real.</p>
+      <div class="tags"><span>Sonificación</span><span>Imagen</span><span>Web Audio</span></div>
+      <div class="actions">
+        <span class="aqua">Abrir ✦</span>
+        <div class="mini">
+          <a href="https://antoaracena.github.io/clase-imagen-y-sonido-/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Abrir app</a>
+          <a href="https://github.com/antoaracena/clase-imagen-y-sonido-" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub</a>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Taller de Interfaces · Universidad Adolfo Ibáñez · 2026
+    <span class="sep">✦</span>
+    <a href="https://github.com/antoaracena" target="_blank" rel="noopener">github.com/antoaracena</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var path = document.getElementById('wave');
+    if(!path) return;
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    try{
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.getBoundingClientRect();
+      path.style.transition = 'stroke-dashoffset 1.5s ease-out';
+      requestAnimationFrame(function(){ path.style.strokeDashoffset = '0'; });
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>
